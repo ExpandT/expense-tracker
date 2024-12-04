@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>Add Transaction</h2>
+<form [formGroup]="transactionForm" (ngSubmit)="onSubmit()" class="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+    @if (transactionForm.get('name')?.hasError('required')) {
+      <mat-error>
+        Name is required.
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input matInput formControlName="amount" type="number">
+    @if (transactionForm.get('amount')?.hasError('required')) {
+      <mat-error>
+        Amount is required.
+      </mat-error>
+    }
+
+    @if (transactionForm.get('amount')?.hasError('pattern')) {
+      <mat-error>
+        Enter a valid amount (e.g., 100.00).
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Transaction Type</mat-label>
+    <mat-select formControlName="type">
+      <mat-option value="income">Income</mat-option>
+      <mat-option value="expense">Expense</mat-option>
+    </mat-select>
+    @if (transactionForm.get('type')?.hasError('required')) {
+      <mat-error>
+        Transaction type is required.
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category">
+      @for (category of categories; track $index) {
+        <mat-option [value]="category">{{ category }}</mat-option>
+      }
+    </mat-select>
+    @if (transactionForm.get('category')?.hasError('required')) {
+      <mat-error>
+        Category is required.
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+    <button mat-button type="submit" [disabled]="transactionForm.invalid">Save</button>
+  </div>
+</form>

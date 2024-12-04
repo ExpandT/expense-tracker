@@ -1,0 +1,25 @@
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 940px;
+
+  .filter {
+    display: flex;
+    flex-direction: column;
+    margin-right: 16px;
+    margin-left: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+.mat-mdc-table {
+  min-width: calc(100% - 500px);
+  max-height: 400px;
+  overflow: auto;
+  margin: 20px auto 0;
+}
+
+

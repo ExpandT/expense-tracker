@@ -1,0 +1,10 @@
+<mat-card class="balance-card">
+  <mat-card-title>Balance</mat-card-title>
+  <mat-card-content>
+    <h2>{{ balance.total | currency }}</h2>
+    <p>Income: {{ balance.income | currency }}</p>
+    <p>Expense: {{ balance.expense | currency }}</p>
+  </mat-card-content>
+</mat-card>
+
+<app-transaction-list></app-transaction-list>
